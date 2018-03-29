@@ -1,5 +1,7 @@
 package com.uam.Hangar69.AeroNaves;
 
+import java.util.LinkedList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,32 +16,41 @@ public class Aviones extends AeroNaves{
     
     private int cantidadAsientosClaseregular;
     private int cantidadAsientosPrimeraClases;
+    private int cantidadAsientosNodisponibles;
+    private int cantidadAsientosTotales;
     private int cantidadAsientosDisponibles;
-    private int configuracionAsientosF;
-    private int configuracionAsientosC;
-    private int[]Filas;
-
-
-    public Aviones(int cantidadAsientosClaseregular, int cantidadAsientosPrimeraClases, int configuracionAsientosF, int configuracionAsientosFila1,int configuracionAsientosFila2
-            ,int configuracionAsientosFila3, String nombre, String matricula, String modelo, int añofabricación, boolean activa) {
+    
+    private int asientosporFila;
+    private int cantidadColumnasasientos;
+    private int asientosFila1;
+    private int asientosFila2;
+    private int asientosFila3;
+    int[][] configuracionAsientos2;
+    
+ 
+    
+    public Aviones(String nombre, String matricula, String modelo, int añofabricación, boolean activa) {
+        super(nombre, matricula, modelo, añofabricación, activa);
+        
+    }
+    
+    public Aviones(int cantidadAsientosClaseregular, int cantidadAsientosPrimeraClases, int cantidadAsientosNodisponibles, int cantidadAsientosTotales, int cantidadAsientosDisponibles, int asientosporFila, int cantidadColumnasasientos, int asientosFila1, int asientosFila2, int asientosFila3, int[][] configuracionAsientos2, String nombre, String matricula, String modelo, int añofabricación, boolean activa) {
         super(nombre, matricula, modelo, añofabricación, activa);
         this.cantidadAsientosClaseregular = cantidadAsientosClaseregular;
         this.cantidadAsientosPrimeraClases = cantidadAsientosPrimeraClases;
-        this.configuracionAsientosF = configuracionAsientosF;
-        Filas= new int[configuracionAsientosF+1];
-        if(configuracionAsientosF==0){
-        Filas[0]= configuracionAsientosFila1;  
-        }else if(configuracionAsientosF==1){
-        Filas[0]= configuracionAsientosFila1;
-        Filas[1]= configuracionAsientosFila2;
-        }else if(configuracionAsientosF==2){
-        Filas[0]= configuracionAsientosFila1;
-        Filas[1]= configuracionAsientosFila2;
-        Filas[2]= configuracionAsientosFila3;
-        }
-
+        this.cantidadAsientosNodisponibles = cantidadAsientosNodisponibles;
+        this.cantidadAsientosTotales = cantidadAsientosTotales;
+        this.cantidadAsientosDisponibles = cantidadAsientosDisponibles;
+        this.asientosporFila = asientosporFila;
+        this.cantidadColumnasasientos = cantidadColumnasasientos;
+        this.asientosFila1 = asientosFila1;
+        this.asientosFila2 = asientosFila2;
+        this.asientosFila3 = asientosFila3;
+        this.configuracionAsientos2 = configuracionAsientos2;
     }
- 
+    
+    
+
     public int getCantidadAsientosClaseregular() {
         return cantidadAsientosClaseregular;
     }
@@ -64,21 +75,71 @@ public class Aviones extends AeroNaves{
         this.cantidadAsientosDisponibles = cantidadAsientosDisponibles;
     }
 
-    public int getConfiguracionAsientosF() {
-        return configuracionAsientosF;
+    public int getCantidadAsientosNodisponibles() {
+        return cantidadAsientosNodisponibles;
     }
 
-    public void setConfiguracionAsientosF(int configuracionAsientosF) {
-        this.configuracionAsientosF = configuracionAsientosF;
+    public void setCantidadAsientosNodisponibles(int cantidadAsientosNodisponibles) {
+        this.cantidadAsientosNodisponibles = cantidadAsientosNodisponibles;
     }
 
-    public int getConfiguracionAsientosC() {
-        return configuracionAsientosC;
+    public int getCantidadAsientosTotales() {
+        return cantidadAsientosTotales;
     }
 
-    public void setConfiguracionAsientosC(int configuracionAsientosC) {
-        this.configuracionAsientosC = configuracionAsientosC;
+    public void setCantidadAsientosTotales(int cantidadAsientosTotales) {
+        this.cantidadAsientosTotales = cantidadAsientosTotales;
     }
+
+    public int getAsientosporFila() {
+        return asientosporFila;
+    }
+
+    public void setAsientosporFila(int asientosporFila) {
+        this.asientosporFila = asientosporFila;
+    }
+
+    public int getCantidadColumnasasientos() {
+        return cantidadColumnasasientos;
+    }
+
+    public void setCantidadColumnasasientos(int cantidadColumnasasientos) {
+        this.cantidadColumnasasientos = cantidadColumnasasientos;
+    }
+
+    public int getAsientosFila1() {
+        return asientosFila1;
+    }
+
+    public void setAsientosFila1(int asientosFila1) {
+        this.asientosFila1 = asientosFila1;
+    }
+
+    public int getAsientosFila2() {
+        return asientosFila2;
+    }
+
+    public void setAsientosFila2(int asientosFila2) {
+        this.asientosFila2 = asientosFila2;
+    }
+
+    public int getAsientosFila3() {
+        return asientosFila3;
+    }
+
+    public void setAsientosFila3(int asientosFila3) {
+        this.asientosFila3 = asientosFila3;
+    }
+
+    public int[][] getConfiguracionAsientos2() {
+        return configuracionAsientos2;
+    }
+
+    public void setConfiguracionAsientos2(int[][] configuracionAsientos2) {
+        this.configuracionAsientos2 = configuracionAsientos2;
+    }
+
+
 
 
     

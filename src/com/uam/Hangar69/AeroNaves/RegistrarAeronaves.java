@@ -22,8 +22,8 @@ public class RegistrarAeronaves {
    
     public RegistrarAeronaves(){
         
-        Aviones AIRBUSA380 = new Aviones(0, 0, 0, 0, 0, 0, "AIRBUS A380", "", "", 0, true);
-        Aviones BOEING747 = new Aviones(200, 20, 2, 2, 2, 2, "BOEING 747", "", "", 0, true);
+        Aviones AIRBUSA380 = new Aviones( "AIRBUS A380", "", "", 0, true);
+        Aviones BOEING747 = new Aviones("BOEING 747", "", "", 0, true);
         
         avionesConfigurados.add(AIRBUSA380);
         avionesConfigurados.add(BOEING747);

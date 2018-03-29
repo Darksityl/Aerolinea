@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,7 +53,14 @@ public class Asientos extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        setBackground(Color.yellow);
+        if(getBackground()==Color.BLUE){
+            setBackground(Color.GRAY);
+        }else
+        if(getBackground()==Color.GRAY){
+            setBackground(null);
+        }else{
+        setBackground(Color.blue);
+        }
     }
     
 }
