@@ -9,6 +9,7 @@ import com.uam.Hangar69.AeroNaves.Aviones;
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -337,7 +338,7 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGap(0, 556, Short.MAX_VALUE)
         );
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Refrescar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -383,11 +384,11 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAgregar)
-                            .addComponent(jButton2)))
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(286, 286, 286))
+                .addGap(298, 298, 298))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,9 +399,10 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonAgregar)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton2))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButtonAgregar)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -485,7 +487,12 @@ public class NewJFrame extends javax.swing.JFrame {
                                 String modelo, int añofabricación, boolean activa
 */
         
-        
+        try {
+        jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
+        jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
+        jTextFieldNoDisponible.setText(Integer.toString(AsientosDesahbilitado()));
+        } catch (Exception e) {
+        }
         
         
         
@@ -574,7 +581,6 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
         try {
         jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
         jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
@@ -700,6 +706,14 @@ public void Crearasientos(){
 }
 
 
+
+
+
+
+
+
+
+
 public int AsientosVip(){
 
     int x=0;
@@ -773,10 +787,6 @@ public int[][] CrearMatrizdeBotones(){
     
    return pConfiguracionAsientos; 
 }
-
-
-
-
 
 }
 

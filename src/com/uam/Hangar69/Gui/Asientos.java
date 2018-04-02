@@ -53,6 +53,8 @@ public class Asientos extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
+
         if(getBackground()==Color.BLUE){
             setBackground(Color.GRAY);
         }else
@@ -62,5 +64,9 @@ public class Asientos extends JButton implements ActionListener{
         setBackground(Color.blue);
         }
     }
+    
+    
+    
+    
     
 }

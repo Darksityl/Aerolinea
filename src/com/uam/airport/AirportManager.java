@@ -3,27 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.uam.Hangar69.Gui;
+package com.uam.airport;
 
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
+import com.uam.Hangar69.Gui.NewJFrame;
 
 /**
  *
  * @author Kenneth
  */
-public class GUIGarage {
+public class AirportManager {
     
-    public static void main(String[] args){
-        
-
         RegistrarAeronaves registroAeronaves = new RegistrarAeronaves();
         NewJFrame crearAvion = new NewJFrame(registroAeronaves);
-        crearAvion.setVisible(true);  
-        
-
-        
-        
-        
-    }
     
 }
