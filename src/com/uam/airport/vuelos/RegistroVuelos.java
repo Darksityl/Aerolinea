@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.uam.Hangar69.vuelos;
+package com.uam.airport.vuelos;
 
 import java.util.LinkedList;
 

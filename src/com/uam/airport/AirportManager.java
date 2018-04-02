@@ -6,7 +6,8 @@
 package com.uam.airport;
 
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
-import com.uam.Hangar69.Gui.NewJFrame;
+import com.uam.Hangar69.Gui.GUIGarage;
+import com.uam.airport.vuelos.RegistroVuelos;
 
 /**
  *
@@ -14,7 +15,18 @@ import com.uam.Hangar69.Gui.NewJFrame;
  */
 public class AirportManager {
     
-        RegistrarAeronaves registroAeronaves = new RegistrarAeronaves();
-        NewJFrame crearAvion = new NewJFrame(registroAeronaves);
+       public static RegistrarAeronaves registroAeronaves = new RegistrarAeronaves();
+       public static  RegistroVuelos listaVuelos = new RegistroVuelos();
+        
+        
+        
+        
+
+                
+                
+  public static void main(String[] args){
+        Main mainmenu = new Main(registroAeronaves,listaVuelos);
+        mainmenu.setVisible(true);
+ }
     
 }

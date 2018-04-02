@@ -3,22 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.uam.Hangar69.vuelos;
+package com.uam.airport.vuelos;
 
+import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Kenneth
  */
+
+
 public class GUIRegistroVuelos extends javax.swing.JFrame {
     
-    
+    RegistrarAeronaves registroAeronaves;
+    RegistroVuelos listaVuelos;
     String []Destinos = {"SJO - San Jose","PTR - Orotina","MIA - Miami"};
     Calendar salida;
     Calendar llegada;
@@ -28,7 +33,9 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
     /**
      * Creates new form GUIRegistroVuelos
      */
-    public GUIRegistroVuelos() {
+    public GUIRegistroVuelos(RegistrarAeronaves registroAeronaves,RegistroVuelos listaVuelos) {
+        this.registroAeronaves=registroAeronaves;
+        this.listaVuelos=listaVuelos;
         initComponents();
     }
 
@@ -63,8 +70,6 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Hora salida :");
 
@@ -193,15 +198,16 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxMinutosSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxMinutosSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBoxLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(jComboBoxMinutosLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jComboBoxMinutosLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jDateChooserDateArrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,15 +237,17 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Matricula", "Avion", "Espacios", "Primera Clase", "Activo"
             }
         ));
+        jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable1PropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -347,7 +355,9 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldFechaActualPropertyChange
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+        
+     try {
+                mostrar();
 
                 duracionVuelo();
                 if(isCorrect()){
@@ -362,6 +372,14 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
+    // TODO add your handling code here:
+        
+        
+        
+        
+    }//GEN-LAST:event_jTable1PropertyChange
 
     /**
      * @param args the command line arguments
@@ -393,7 +411,6 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIRegistroVuelos().setVisible(true);
             }
         });
     }
@@ -418,7 +435,7 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldFechaActual;
     private javax.swing.JTextField jTextFieldduracion;
     // End of variables declaration//GEN-END:variables
@@ -442,15 +459,42 @@ public void duracionVuelo(){
    
     duracion = "Días: "+this.dias+" Horas: "+this.horas+" Minutos: "+this.minutos;
 
-    
+ 
 
     
 }
+
+  public void mostrar(){
+    String matris[][] = new String[this.registroAeronaves.sizeAvion()][6];
+    DefaultTableModel tModel = (DefaultTableModel)this.jTable1.getModel();
+    
+      for (int i = 0; i < registroAeronaves.sizeAvion(); i++) {
+          matris[i][0]=registroAeronaves.getAvion(i).getNombre();
+          matris[i][1]=registroAeronaves.getAvion(i).getMatricula();
+          matris[i][2]=registroAeronaves.getAvion(i).getModelo();
+          matris[i][3]=Integer.toString(registroAeronaves.getAvion(i).getCantidadAsientosDisponibles());
+          matris[i][4]=Integer.toString(registroAeronaves.getAvion(i).getCantidadAsientosPrimeraClases());
+          matris[i][5]=(Boolean.toString(registroAeronaves.getAvion(i).isActiva()));
+          
+      }
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            matris,
+            new String [] {
+                "Nombre", "Matricula", "Avion", "Espacios", "Primera Clase", "Activo"
+            }
+        ));
+      
+    
+} 
+
+
 
 public boolean isCorrect(){
         return this.dias>=0&&this.horas>=0&&this.minutos>=0;
 }
 
 }
+
 
 

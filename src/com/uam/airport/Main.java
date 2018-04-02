@@ -5,16 +5,31 @@
  */
 package com.uam.airport;
 
+
+
+import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
+import com.uam.Hangar69.Gui.GUIGarage;
+import com.uam.airport.vuelos.GUIRegistroVuelos;
+import com.uam.airport.vuelos.RegistroVuelos;
+
 /**
  *
  * @author Kenneth
  */
+
+    
 public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    
+        RegistrarAeronaves registroAeronaves;
+        RegistroVuelos listaVuelos;
+    
+    public Main(RegistrarAeronaves registroAeronaves,RegistroVuelos listaVuelos) {
+        this.registroAeronaves=registroAeronaves;
+        this.listaVuelos=listaVuelos;
         initComponents();
     }
 
@@ -87,11 +102,19 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        GUIGarage crearAvion = new GUIGarage(registroAeronaves);
+        
+        crearAvion.setVisible(true);
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        GUIRegistroVuelos crearVuelos = new GUIRegistroVuelos(registroAeronaves,listaVuelos);
+        crearVuelos.setVisible(true);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -124,7 +147,7 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                
             }
         });
     }
