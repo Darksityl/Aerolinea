@@ -442,7 +442,8 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
 
 public void duracionVuelo(){
     
-    
+    int tmpllegada;
+    int tmpSalida;
 
     
     
@@ -453,15 +454,15 @@ public void duracionVuelo(){
     this.salida.set(Calendar.HOUR_OF_DAY, Integer.parseInt(jComboBoxHoraSalida.getSelectedItem().toString()));
     this.salida.set(Calendar.MINUTE, Integer.parseInt(jComboBoxMinutosSalida.getSelectedItem().toString()));
     
-    this.dias = llegada.get(Calendar.DAY_OF_YEAR)-salida.get(Calendar.DAY_OF_YEAR);
-    this.horas = llegada.get(Calendar.HOUR_OF_DAY)-salida.get(Calendar.HOUR_OF_DAY);
-    this.minutos = llegada.get(Calendar.MINUTE)-salida.get(Calendar.MINUTE);
-   
-    duracion = "Días: "+this.dias+" Horas: "+this.horas+" Minutos: "+this.minutos;
-
- 
-
     
+    tmpllegada=llegada.get(Calendar.DAY_OF_YEAR)*24*60+llegada.get(Calendar.HOUR_OF_DAY)*60+llegada.get(Calendar.MINUTE);
+    tmpSalida=salida.get(Calendar.DAY_OF_YEAR)*24*60+salida.get(Calendar.HOUR_OF_DAY)*60+salida.get(Calendar.MINUTE);
+    
+    this.dias=(tmpllegada-tmpSalida)/60/24;
+    this.horas=(tmpllegada-tmpSalida)/60;
+    this.minutos=(tmpllegada-tmpSalida)-this.horas*60;
+
+    duracion = " Horas: "+this.horas+" Minutos: "+this.minutos;
 }
 
   public void mostrar(){
