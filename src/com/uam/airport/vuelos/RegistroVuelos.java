@@ -20,6 +20,27 @@ public class RegistroVuelos {
         listaVuelos.add(nVuelos);
     }
     
+    public Vuelos get(int nVuelos){
+    return(Vuelos) listaVuelos.get(nVuelos);
+    }
+    
+    
+    public Vuelos getbyCodigo(String nVuelos){
+    int temp=0;
+    for(int i=0;i<sizeVuelos();i++){
+      if(listaVuelos.get(i).getCodigoVuelo()==nVuelos){
+          temp=i;
+      }  
+    }
+    return(Vuelos) listaVuelos.get(temp);
+    }
+    
+    
+    
+    public int sizeVuelos(){
+        return this.listaVuelos.size();
+    }
+    
     
     
     

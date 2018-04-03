@@ -9,6 +9,7 @@ package com.uam.airport;
 
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
 import com.uam.Hangar69.Gui.GUIGarage;
+import com.uam.airport.reservas.Reservas;
 import com.uam.airport.vuelos.GUIRegistroVuelos;
 import com.uam.airport.vuelos.RegistroVuelos;
 
@@ -64,6 +65,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton3.setText("Crear reservas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Salir");
 
@@ -116,6 +122,15 @@ public class Main extends javax.swing.JFrame {
         crearVuelos.setVisible(true);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        Reservas nuevaReserva = new Reservas(listaVuelos);
+        nuevaReserva.setVisible(true);
+                
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
