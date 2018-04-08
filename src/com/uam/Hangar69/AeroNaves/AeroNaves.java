@@ -17,6 +17,7 @@ public class AeroNaves {
     private int añofabricación;
     private boolean activa;
     private String tipos;
+    private Object AsientosComprados;
     
     
 

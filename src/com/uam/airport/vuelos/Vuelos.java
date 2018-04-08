@@ -6,7 +6,10 @@
 package com.uam.airport.vuelos;
 
 import com.uam.Hangar69.AeroNaves.Aviones;
+import com.uam.airport.Asientos.AsientosReservados;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -28,6 +31,36 @@ public class Vuelos {
     private String origen;
     private int dias,horas,minutos; //Duration
     private String codigoVuelo;
+    List<AsientosReservados> asientosReservados=null;
+    
+    public void addAsientosReservados(AsientosReservados x){
+        this.asientosReservados.add(x);
+    }
+
+    public List<AsientosReservados> getAsientosReservados() {
+        return asientosReservados;
+    }
+
+    public void setAsientosReservados(List<AsientosReservados> asientosReservados) {
+        this.asientosReservados = asientosReservados;
+    }
+    
+    
+    
+    public AsientosReservados getAsientosReservados(int x){
+        return asientosReservados.get(x);
+    }
+        public int sizeAsientosReservados(){
+        return this.asientosReservados.size();
+    }
+    public void deleteAsientosReservados(int x){
+    this.asientosReservados.remove(x);
+}
+    public boolean isEmptyAsientosReservados(){
+        return this.asientosReservados.isEmpty();
+    }
+    
+    
 
     public Vuelos(Aviones aviondelVuelo, Calendar salida, Calendar llegada, String destino, String origen, int dias, int horas, int minutos) {
         this.aviondelVuelo = aviondelVuelo;
