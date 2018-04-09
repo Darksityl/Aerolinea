@@ -28,17 +28,21 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     int filas=0;
     int columnas=0;
     String codigoVuelo,nombre;
+    boolean SeleeccionAsientos;
+    int turista,primera;
     
     
     
     
     public Asientos [][]botones ;
             
-    public GUiSelectAsientos(RegistroVuelos ListaVuelos,Aviones nAvion,String pCodigoVuelo,String pNombre) {
+    public GUiSelectAsientos(RegistroVuelos ListaVuelos,Aviones nAvion,String pCodigoVuelo,String pNombre,int nTurista,int nPrimera) {
         this.nombre =pNombre;
         this.codigoVuelo=pCodigoVuelo;
         this.avion = nAvion;
         this.listaVuelos =  ListaVuelos;
+        this.turista=nTurista;
+        this.primera=nPrimera;
         
         initComponents();
         Crearasientos(nAvion);
@@ -57,6 +61,11 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jTextFieldCodigo = new javax.swing.JTextField();
+        jTextFieldCountPrimera = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2CountTurista = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,11 +86,31 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         });
 
         jTextFieldCodigo.setEditable(false);
+        jTextFieldCodigo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextFieldCodigoPropertyChange(evt);
+            }
+        });
+
+        jTextFieldCountPrimera.setEditable(false);
+
+        jLabel1.setText("Seleccionados en Primera:");
+
+        jLabel2.setText("Seleccionados en Turista:");
+
+        jTextField2CountTurista.setEditable(false);
+
+        jButton2.setText("Validar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -91,19 +120,39 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
                         .addContainerGap(926, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField2CountTurista, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextFieldCountPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCountPrimera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField2CountTurista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27))
         );
@@ -114,12 +163,52 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        
+        if(this.primera==asientosPrimeraSeleccionados()&&this.turista==asientosturistaSeleccionados()){
+            
+            
         addAsientos();
+        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosClaseregularDisponible(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosClaseregularDisponible()-asientosturistaSeleccionados());
+        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosPrimeraClasesDisponible(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosPrimeraClasesDisponible()-asientosPrimeraSeleccionados());
+        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosDisponibles(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosDisponibles()-AsientosSeleccionados());
+        
+        
+        JOptionPane.showMessageDialog(null, "Usted ha reservado : "+AsientosSeleccionados()+" asientos.");
+        
+        
+        
+        setVisible(false);
+        this.SeleeccionAsientos=false;
+        }else{
+            JOptionPane.showConfirmDialog(null, "Ha ingresado mal los asientos.");
+        }
+        
+        
+        
         
         
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldCodigoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldCodigoPropertyChange
+        // TODO add your handling code here:
+        jTextFieldCodigo.setText(codigoVuelo);
+    }//GEN-LAST:event_jTextFieldCodigoPropertyChange
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        jTextFieldCountPrimera.setText(Integer.toString(asientosPrimeraSeleccionados()));
+        jTextField2CountTurista.setText(Integer.toString(asientosturistaSeleccionados()));
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,21 +300,70 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         if(botones[fila][Columna].getBackground()==Color.YELLOW){
             AsientosReservados nuevoAsientoReservado = new AsientosReservados(nombre, botones[fila][Columna].getText());
             
-            JOptionPane.showInputDialog(Boolean.toString(listaVuelos.getbyCodigo(codigoVuelo).isEmptyAsientosReservados()));
             listaVuelos.getbyCodigo(codigoVuelo).addAsientosReservados(nuevoAsientoReservado);
             array[fila][Columna]=0;
-            
-            
-            
-            
+        
         }
 
     }
                 listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setConfiguracionAsientos2(array);
 }
-        
+                
     
-} 
+}
+ public int AsientosSeleccionados(){
+
+    int x=0;
+    for (int fila =0;fila < this.filas;fila++){
+    for (int Columna =0;Columna < this.columnas;Columna++){
+        if(botones[fila][Columna].getBackground()==Color.yellow){
+            x++;
+        }
+
+    }
+    }
+    
+    
+   return x; 
+}  
+ 
+ 
+ public int asientosPrimeraSeleccionados(){
+     int x=0;
+     
+         for (int fila =0;fila < this.filas;fila++){
+    for (int Columna =0;Columna < this.columnas;Columna++){
+        if(botones[fila][Columna].getBackground()==Color.yellow&&avion.getConfiguracionAsientos2()[fila][Columna]==2){
+            x++;
+        }
+
+    }
+    }
+     return x;
+ }
+ public int asientosturistaSeleccionados(){
+     int x=0;
+     
+         for (int fila =0;fila < this.filas;fila++){
+    for (int Columna =0;Columna < this.columnas;Columna++){
+        if(botones[fila][Columna].getBackground()==Color.yellow&&avion.getConfiguracionAsientos2()[fila][Columna]==1){
+            x++;
+        }
+
+    }
+    }
+     return x;
+ }
+ 
+ 
+ 
+ 
+
+   
+   
+   
+   
+   
     
     
     
@@ -233,7 +371,12 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField2CountTurista;
     private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldCountPrimera;
     // End of variables declaration//GEN-END:variables
 }

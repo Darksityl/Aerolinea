@@ -507,6 +507,8 @@ public class GUIGarage extends javax.swing.JFrame {
         nuevoAvion.setAsientosFila2(jComboBoxFila2.getSelectedIndex());
         nuevoAvion.setAsientosFila3(jComboBoxFila3.getSelectedIndex());
         nuevoAvion.setConfiguracionAsientos2(CrearMatrizdeBotones());
+        nuevoAvion.setCantidadAsientosClaseregularDisponible(AsientosClaseRegular());
+        nuevoAvion.setCantidadAsientosPrimeraClasesDisponible(AsientosVip());
         this.registroAeronaves.addAvion(nuevoAvion);
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 

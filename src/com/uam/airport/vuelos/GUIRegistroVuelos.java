@@ -5,12 +5,9 @@
  */
 package com.uam.airport.vuelos;
 
+import com.uam.Hangar69.AeroNaves.Aviones;
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 
 
-public class GUIRegistroVuelos extends javax.swing.JFrame {
+public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
     
     RegistrarAeronaves registroAeronaves;
     RegistroVuelos listaVuelos;
@@ -427,7 +424,34 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1PropertyChange
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     Vuelos nuevoVuelo = new Vuelos(registroAeronaves.getAvion(jTable1.getSelectedRow()),jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxOrigen.getSelectedItem().toString(),jComboBoxDestinos.getSelectedItem().toString(),dias,horas,minutos);
+     
+     // Con JCombobox
+        Object seleccion = JOptionPane.showInputDialog(
+           null,
+           "Seleccione Cantidad de dias a repetir ruta :",
+           "Selector de opciones",
+           JOptionPane.QUESTION_MESSAGE,
+           null,  // null para icono defecto
+           new Object[] { "1 día", "2 días", "7 días" }, 
+           "opcion 1");
+
+        System.out.println("El usuario ha elegido "+seleccion);
+     if(seleccion=="1 día"){
+         
+     generarCodigoVuelo();
+     duracionVuelo();
+     Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
+     Aviones nAvionClonado=null;
+     
+         try {
+                  nAvionClonado=nAvion.clone();
+
+         } catch (Exception e) {
+             
+            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
+         }
+     
+     Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
      nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
      nuevoVuelo.setPrecioPrimera(Integer.parseInt(jTextFieldPRecioVIP.getText()));
      nuevoVuelo.setPrecioTurista(Integer.parseInt(jTextFieldPrecioTurista.getText()));
@@ -436,6 +460,73 @@ public class GUIRegistroVuelos extends javax.swing.JFrame {
      nuevoVuelo.setCodigoVuelo(this.codigoVuelo);
      nuevoVuelo.setDuracion(duracion);
      listaVuelos.add(nuevoVuelo);
+     
+     JOptionPane.showMessageDialog(null,"Ha programado 1 ruta por 1 día" );
+         
+     }else if(seleccion=="2 días"){
+         
+     for(int x=0;x<2;x++){
+    generarCodigoVuelo();
+     duracionVuelo();
+     Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
+     Aviones nAvionClonado=null;
+     
+         try {
+                  nAvionClonado=nAvion.clone();
+
+         } catch (Exception e) {
+             
+            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
+         }
+     Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
+     nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
+     nuevoVuelo.setPrecioPrimera(Integer.parseInt(jTextFieldPRecioVIP.getText()));
+     nuevoVuelo.setPrecioTurista(Integer.parseInt(jTextFieldPrecioTurista.getText()));
+     nuevoVuelo.setHorasLlegada(this.horaLlegada);
+     nuevoVuelo.setHorasSalida(this.horaSalida);
+     nuevoVuelo.setCodigoVuelo(this.codigoVuelo);
+     nuevoVuelo.setDuracion(duracion);
+     llegada.add(Calendar.DAY_OF_YEAR, x);
+     salida.add(Calendar.DAY_OF_YEAR, x);
+     nuevoVuelo.setLlegada(llegada);
+     nuevoVuelo.setSalida(salida);
+     listaVuelos.add(nuevoVuelo);
+             
+         }
+         
+     JOptionPane.showMessageDialog(null,"Ha programado 1 ruta por 2 días" );
+     }else if(seleccion=="7 días"){
+     for(int x=0;x<7;x++){
+     generarCodigoVuelo();
+     duracionVuelo();
+     Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
+     Aviones nAvionClonado=null;
+     
+         try {
+                  nAvionClonado=nAvion.clone();
+
+         } catch (Exception e) {
+             
+            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
+         }
+     
+     Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
+     nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
+     nuevoVuelo.setPrecioPrimera(Integer.parseInt(jTextFieldPRecioVIP.getText()));
+     nuevoVuelo.setPrecioTurista(Integer.parseInt(jTextFieldPrecioTurista.getText()));
+     nuevoVuelo.setHorasLlegada(this.horaLlegada);
+     nuevoVuelo.setHorasSalida(this.horaSalida);
+     nuevoVuelo.setCodigoVuelo(this.codigoVuelo);
+     nuevoVuelo.setDuracion(duracion);
+     llegada.add(Calendar.DAY_OF_YEAR, x);
+     salida.add(Calendar.DAY_OF_YEAR, x);
+     nuevoVuelo.setLlegada(llegada);
+     nuevoVuelo.setSalida(salida);
+     listaVuelos.add(nuevoVuelo);
+             
+         }     JOptionPane.showMessageDialog(null,"Ha programado 1 ruta por 7 días" );
+     }
+     
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -569,7 +660,19 @@ public boolean isCorrect(){
         return this.dias>=0&&this.horas>=0&&this.minutos>=0;
 }
 
+@Override
+public Object clone() throws CloneNotSupportedException {
+    Aviones octClone = (Aviones)super.clone();
+    return octClone;
 }
+
+
+
+
+
+}
+
+
 
 
 

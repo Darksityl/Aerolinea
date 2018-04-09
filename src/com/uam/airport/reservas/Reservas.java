@@ -5,9 +5,16 @@
  */
 package com.uam.airport.reservas;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
 import com.uam.airport.Asientos.GUiSelectAsientos;
 import com.uam.airport.vuelos.RegistroVuelos;
+import java.io.FileOutputStream;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -57,8 +64,9 @@ public class Reservas extends javax.swing.JFrame {
         jTableViajeRegreso = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonSelect1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setText("Comprador :");
 
@@ -194,14 +202,26 @@ public class Reservas extends javax.swing.JFrame {
 
         jLabel7.setText("Vuelos Regreso :");
 
-        jButton2.setText("Escoger asientos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSelect1.setText("Escoger asientos");
+        jButtonSelect1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSelect1ActionPerformed(evt);
             }
         });
 
         jButton3.setText("Escoger asientos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Facturar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,7 +230,8 @@ public class Reservas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
+                    .addComponent(jButton4)
+                    .addComponent(jButtonSelect1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
@@ -229,19 +250,21 @@ public class Reservas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(174, 195, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(3, 3, 3)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonSelect1)
                         .addGap(1, 1, 1)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -269,16 +292,85 @@ public class Reservas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonSelect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelect1ActionPerformed
         // TODO add your handling code here:
         String pCodigoVuelo = jTablevuelosIda.getModel().getValueAt( jTablevuelosIda.getSelectedRow(), 1).toString();
         
-        GUiSelectAsientos seleccionDeAsientosDEstino = new GUiSelectAsientos(listaVuelos, listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo(),pCodigoVuelo,jTextFieldComprador.getText());
-        seleccionDeAsientosDEstino.setVisible(true);
+        
+        if(Integer.parseInt(jTextFieldPrimeraClase.getText())>listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo().getCantidadAsientosPrimeraClasesDisponible()){
+            JOptionPane.showMessageDialog(null, "No hay suficientes espacion para primera clase");
+        }else if(Integer.parseInt(jTextFieldClaseTurista.getText())>listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo().getCantidadAsientosClaseregularDisponible()){
+                        JOptionPane.showMessageDialog(null, "No hay suficientes espacion para la clase turista");
+
+        }else{
+            
+            
+        if(validador1()==true){
+                   GUiSelectAsientos seleccionDeAsientosDEstino = new GUiSelectAsientos(listaVuelos, listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo(),pCodigoVuelo,jTextFieldComprador.getText()
+                ,Integer.parseInt(jTextFieldClaseTurista.getText()),Integer.parseInt(jTextFieldPrimeraClase.getText()));
+        seleccionDeAsientosDEstino.setVisible(true); 
+        }else{
+          JOptionPane.showMessageDialog(null, "Ya seleccionó estos asientos");
+        }            
+            
+        }
         
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+
+        
+        
+        
+    }//GEN-LAST:event_jButtonSelect1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        facturarTicket();
+
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+                String pCodigoVuelo = jTableViajeRegreso.getModel().getValueAt( jTableViajeRegreso.getSelectedRow(), 1).toString();
+        
+        
+        if(Integer.parseInt(jTextFieldPrimeraClase.getText())>listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo().getCantidadAsientosPrimeraClasesDisponible()){
+            JOptionPane.showMessageDialog(null, "No hay suficientes espacion para primera clase");
+        }else if(Integer.parseInt(jTextFieldClaseTurista.getText())>listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo().getCantidadAsientosClaseregularDisponible()){
+                        JOptionPane.showMessageDialog(null, "No hay suficientes espacion para la clase turista");
+
+        }else{
+            
+            
+        if(validador2()==true){
+                   GUiSelectAsientos seleccionDeAsientosDEstino = new GUiSelectAsientos(listaVuelos, listaVuelos.getbyCodigo(pCodigoVuelo).getAviondelVuelo(),pCodigoVuelo,jTextFieldComprador.getText()
+                ,Integer.parseInt(jTextFieldClaseTurista.getText()),Integer.parseInt(jTextFieldPrimeraClase.getText()));
+        seleccionDeAsientosDEstino.setVisible(true); 
+        }else{
+          JOptionPane.showMessageDialog(null, "Ya seleccionó estos asientos");
+        }            
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,8 +408,9 @@ public class Reservas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonSelect1;
     private javax.swing.JComboBox<String> jComboBoxDestino;
     private javax.swing.JComboBox<String> jComboBoxOrigen;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -342,7 +435,7 @@ public class Reservas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
   public void mostrarTablas(){
-    int temp1=0,temp2=0,temp3=0;
+    int temp1=0,temp2=0,temp3=0,temp4=0;
     //String matris[][] = new String[this.listaVuelos.sizeVuelos()][6];
     DefaultTableModel tModel = (DefaultTableModel)this.jTablevuelosIda.getModel();
     
@@ -364,7 +457,7 @@ public class Reservas extends javax.swing.JFrame {
          String matrisOrigen[][] = new String[temp2][6];
       
       for (int i = 0; i < listaVuelos.sizeVuelos(); i++) {
-          if(listaVuelos.get(i).getDestino()==jComboBoxDestino.getSelectedItem().toString()){
+          if(listaVuelos.get(i).getDestino()==jComboBoxDestino.getSelectedItem().toString()&&listaVuelos.get(i).getOrigen()==jComboBoxOrigen.getSelectedItem().toString()){
           
           matrisDestino[temp3][0]=listaVuelos.get(i).getPiloto();
           matrisDestino[temp3][1]=listaVuelos.get(i).getCodigoVuelo();
@@ -373,6 +466,20 @@ public class Reservas extends javax.swing.JFrame {
           matrisDestino[temp3][4]=listaVuelos.get(i).getHorasLlegada();
           matrisDestino[temp3][5]=Integer.toString(listaVuelos.get(i).getAviondelVuelo().getCantidadAsientosDisponibles());
               temp3++;
+          }
+      }
+      
+      
+            for (int i = 0; i < listaVuelos.sizeVuelos(); i++) {
+          if(listaVuelos.get(i).getOrigen()==jComboBoxDestino.getSelectedItem().toString()&&listaVuelos.get(i).getDestino()==jComboBoxOrigen.getSelectedItem().toString()){
+          
+          matrisOrigen[temp4][0]=listaVuelos.get(i).getPiloto();
+          matrisOrigen[temp4][1]=listaVuelos.get(i).getCodigoVuelo();
+          matrisOrigen[temp4][2]=listaVuelos.get(i).getDuracion();
+          matrisOrigen[temp4][3]=listaVuelos.get(i).getHorasSalida();
+          matrisOrigen[temp4][4]=listaVuelos.get(i).getHorasLlegada();
+          matrisOrigen[temp4][5]=Integer.toString(listaVuelos.get(i).getAviondelVuelo().getCantidadAsientosDisponibles());
+              temp4++;
           }
       }
 //      for (int i = 0; i < listaVuelos.sizeVuelos(); i++) {
@@ -394,9 +501,105 @@ public class Reservas extends javax.swing.JFrame {
                 "Piloto", "Vuelo", "duracion", "Hora Salida", "Hora Llegada", "Asientos Disponibles"
             }
         ));
+        jTableViajeRegreso.setModel(new javax.swing.table.DefaultTableModel(
+            matrisOrigen,
+            new String [] {
+                "Piloto", "Vuelo", "duracion", "Hora Salida", "Hora Llegada", "Asientos Disponibles"
+            }
+        ));
+        
+      
       
     
 }
+  
+    public boolean validador1(){
+        
+        String asientosIda="";
+        
+        
+        String pCodigoVueloida = jTablevuelosIda.getModel().getValueAt( jTablevuelosIda.getSelectedRow(), 1).toString();
+        for(int x =0;x<listaVuelos.getbyCodigo(pCodigoVueloida).sizeAsientosReservados();x++){
+            //if(listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getNombreCompra()==jTextFieldComprador.getText()){
+                asientosIda=listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getAsiento()+" ";
+            //}
+        }
+        
+        return asientosIda=="";
+        }
+    public boolean validador2(){
+        
+        String asientosRegreso="";
+        
+        
+        String pCodigoVueloida = jTableViajeRegreso.getModel().getValueAt( jTableViajeRegreso.getSelectedRow(), 1).toString();
+        for(int x =0;x<listaVuelos.getbyCodigo(pCodigoVueloida).sizeAsientosReservados();x++){
+            //if(listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getNombreCompra()==jTextFieldComprador.getText()){
+               asientosRegreso=listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getAsiento()+" ";
+            //}
+        }
+        
+        return asientosRegreso=="";
+        }
+  
+     public void facturarTicket(){
+       
+               String Factura;
+        String Ida;
+        String Regreso="";
+        String asientosIda="";
+        
+        
+        String pCodigoVueloida = jTablevuelosIda.getModel().getValueAt( jTablevuelosIda.getSelectedRow(), 1).toString();
+
+        
+        for(int x =0;x<listaVuelos.getbyCodigo(pCodigoVueloida).sizeAsientosReservados();x++){
+            //if(listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getNombreCompra()==jTextFieldComprador.getText()){
+                asientosIda=asientosIda+listaVuelos.getbyCodigo(pCodigoVueloida).get(x).getAsiento()+" ";
+            //}
+        }
+        
+        
+        Calendar fechaactual=Calendar.getInstance();
+        
+        
+        
+        
+                
+                
+        Ida= "Nunero de Vuelo: "+pCodigoVueloida+
+             "\n Fecha de compra: "+fechaactual.get(Calendar.DAY_OF_WEEK_IN_MONTH)+"/"+fechaactual.get(Calendar.MONTH)+"/"+fechaactual.get(Calendar.YEAR)+
+             "\n ---------Vuelo-----------------"+
+             "\n"+listaVuelos.getbyCodigo(pCodigoVueloida).getOrigen()+"-"+listaVuelos.getbyCodigo(pCodigoVueloida).getDestino()+
+             "\n Fecha: "+listaVuelos.getbyCodigo(pCodigoVueloida).getSalida().getTime()+
+             "\n Cantidad Pasajeros: " +Integer.toString(Integer.parseInt(jTextFieldClaseTurista.getText())+Integer.parseInt(jTextFieldPrimeraClase.getText()))+
+             "\n Asientos: "+asientosIda+
+             "\n Total a Pagar :"+" $"+Integer.toString(Integer.parseInt(jTextFieldClaseTurista.getText())*listaVuelos.getbyCodigo(pCodigoVueloida).getPrecioTurista()+Integer.parseInt(jTextFieldPrimeraClase.getText())*listaVuelos.getbyCodigo(pCodigoVueloida).getPrecioPrimera())
+                ;
+        
+        
+        Factura=Ida+Regreso;
+       
+       
+         generarPDF(Factura);
+   }
+     
+     
+     public void generarPDF(String nDatosaGenerar){
+         try {
+             FileOutputStream nuevoArchivo = new FileOutputStream(jTextFieldComprador.getText()+".pdf");
+             Document doc =new Document();
+             PdfWriter.getInstance(doc, nuevoArchivo);
+             doc.open();
+             doc.add(new Paragraph(nDatosaGenerar));
+             doc.close();
+             JOptionPane.showMessageDialog(null, "PDF creado correctamente");
+             
+         } catch (Exception e) {
+         }
+         
+         
+     }
 
 
 

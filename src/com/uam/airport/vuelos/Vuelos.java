@@ -31,7 +31,7 @@ public class Vuelos {
     private String origen;
     private int dias,horas,minutos; //Duration
     private String codigoVuelo;
-    List<AsientosReservados> asientosReservados=null;
+    LinkedList<AsientosReservados> asientosReservados= new LinkedList<>();
     
     public void addAsientosReservados(AsientosReservados x){
         this.asientosReservados.add(x);
@@ -41,9 +41,26 @@ public class Vuelos {
         return asientosReservados;
     }
 
-    public void setAsientosReservados(List<AsientosReservados> asientosReservados) {
+    public void setAsientosReservados(LinkedList<AsientosReservados> asientosReservados) {
         this.asientosReservados = asientosReservados;
     }
+    
+    public AsientosReservados getbyCodigo(String pNombreCompra){
+    int temp=0;
+    for(int i=0;i<sizeAsientosReservados();i++){
+      if(asientosReservados.get(i).getNombreCompra()==pNombreCompra){
+          temp=i;
+      }  
+    }
+    return(AsientosReservados) asientosReservados.get(temp);
+    }
+        
+    public AsientosReservados get(int nVuelos){
+    return(AsientosReservados) asientosReservados.get(nVuelos);
+    }
+        
+        
+        
     
     
     

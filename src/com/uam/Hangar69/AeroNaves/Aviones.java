@@ -12,10 +12,12 @@ import java.util.LinkedList;
  *
  * @author Kenneth
  */
-public class Aviones extends AeroNaves{
+public class Aviones extends AeroNaves implements Cloneable{
     
     private int cantidadAsientosClaseregular;
+    private int cantidadAsientosClaseregularDisponible;
     private int cantidadAsientosPrimeraClases;
+    private int cantidadAsientosPrimeraClasesDisponible;
     private int cantidadAsientosNodisponibles;
     private int cantidadAsientosTotales;
     private int cantidadAsientosDisponibles;
@@ -26,6 +28,22 @@ public class Aviones extends AeroNaves{
     private int asientosFila2;
     private int asientosFila3;
     int[][] configuracionAsientos2;
+
+    public int getCantidadAsientosClaseregularDisponible() {
+        return cantidadAsientosClaseregularDisponible;
+    }
+
+    public void setCantidadAsientosClaseregularDisponible(int cantidadAsientosClaseregularDisponible) {
+        this.cantidadAsientosClaseregularDisponible = cantidadAsientosClaseregularDisponible;
+    }
+
+    public int getCantidadAsientosPrimeraClasesDisponible() {
+        return cantidadAsientosPrimeraClasesDisponible;
+    }
+
+    public void setCantidadAsientosPrimeraClasesDisponible(int cantidadAsientosPrimeraClasesDisponible) {
+        this.cantidadAsientosPrimeraClasesDisponible = cantidadAsientosPrimeraClasesDisponible;
+    }
     
  
     
@@ -37,7 +55,9 @@ public class Aviones extends AeroNaves{
     public Aviones(int cantidadAsientosClaseregular, int cantidadAsientosPrimeraClases, int cantidadAsientosNodisponibles, int cantidadAsientosTotales, int cantidadAsientosDisponibles, int asientosporFila, int cantidadColumnasasientos, int asientosFila1, int asientosFila2, int asientosFila3, int[][] configuracionAsientos2, String nombre, String matricula, String modelo, int añofabricación, boolean activa) {
         super(nombre, matricula, modelo, añofabricación, activa);
         this.cantidadAsientosClaseregular = cantidadAsientosClaseregular;
+        this.cantidadAsientosClaseregularDisponible = cantidadAsientosClaseregular;
         this.cantidadAsientosPrimeraClases = cantidadAsientosPrimeraClases;
+        this.cantidadAsientosPrimeraClasesDisponible = cantidadAsientosPrimeraClases;
         this.cantidadAsientosNodisponibles = cantidadAsientosNodisponibles;
         this.cantidadAsientosTotales = cantidadAsientosTotales;
         this.cantidadAsientosDisponibles = cantidadAsientosDisponibles;
@@ -138,7 +158,15 @@ public class Aviones extends AeroNaves{
     public void setConfiguracionAsientos2(int[][] configuracionAsientos2) {
         this.configuracionAsientos2 = configuracionAsientos2;
     }
-
+    
+    
+    @Override
+    public Aviones clone() throws CloneNotSupportedException{
+        Aviones avionclonado = (Aviones)super.clone();
+        return avionclonado;
+    }
+    
+   
 
 
 
