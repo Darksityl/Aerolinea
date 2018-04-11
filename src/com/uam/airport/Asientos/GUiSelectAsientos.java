@@ -44,9 +44,11 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         this.turista=nTurista;
         this.primera=nPrimera;
         
+        
         initComponents();
-        Crearasientos(nAvion);
-        configuracionAsientos(nAvion);
+        Crearasientos();
+        CargarconfiguracionAsientos();
+        
     }
 
     /**
@@ -58,7 +60,7 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelAsientos = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jTextFieldCodigo = new javax.swing.JTextField();
         jTextFieldCountPrimera = new javax.swing.JTextField();
@@ -67,14 +69,14 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         jTextField2CountTurista = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelAsientosLayout = new javax.swing.GroupLayout(jPanelAsientos);
+        jPanelAsientos.setLayout(jPanelAsientosLayout);
+        jPanelAsientosLayout.setHorizontalGroup(
+            jPanelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelAsientosLayout.setVerticalGroup(
+            jPanelAsientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 552, Short.MAX_VALUE)
         );
 
@@ -115,7 +117,7 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanelAsientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(926, Short.MAX_VALUE)
                         .addComponent(jButton1)))
@@ -151,7 +153,7 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(27, 27, 27))
@@ -167,18 +169,18 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         if(this.primera==asientosPrimeraSeleccionados()&&this.turista==asientosturistaSeleccionados()){
             
             
-        addAsientos();
-        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosClaseregularDisponible(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosClaseregularDisponible()-asientosturistaSeleccionados());
-        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosPrimeraClasesDisponible(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosPrimeraClasesDisponible()-asientosPrimeraSeleccionados());
-        listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setCantidadAsientosDisponibles(listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getCantidadAsientosDisponibles()-AsientosSeleccionados());
+        addAsientosList();
+        avion.setCantidadAsientosClaseregularDisponible(avion.getCantidadAsientosClaseregularDisponible()-asientosturistaSeleccionados());
+        avion.setCantidadAsientosPrimeraClasesDisponible(avion.getCantidadAsientosPrimeraClasesDisponible()-asientosPrimeraSeleccionados());
+        avion.setCantidadAsientosDisponibles(avion.getCantidadAsientosDisponibles()-AsientosSeleccionados());
         
         
         JOptionPane.showMessageDialog(null, "Usted ha reservado : "+AsientosSeleccionados()+" asientos.");
         
         
-        
-        setVisible(false);
         this.SeleeccionAsientos=false;
+        setVisible(false);
+        
         }else{
             JOptionPane.showConfirmDialog(null, "Ha ingresado mal los asientos.");
         }
@@ -243,11 +245,11 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
             }
         });
     }
-    public void configuracionAsientos(Aviones nAvion){
-    int[][] pConfiguracionAsientos= nAvion.getConfiguracionAsientos2();
+    public void CargarconfiguracionAsientos(){
+    int[][] pConfiguracionAsientos= avion.getConfiguracionAsientos2();
     
-    for (int fila =0;fila < nAvion.getAsientosporFila();fila++){
-    for (int Columna =0;Columna < nAvion.getAsientosFila1()+nAvion.getAsientosFila2()+nAvion.getAsientosFila3();Columna++){
+    for (int fila =0;fila < avion.getAsientosporFila();fila++){
+    for (int Columna =0;Columna < avion.getAsientosFila1()+avion.getAsientosFila2()+avion.getAsientosFila3();Columna++){
         if(pConfiguracionAsientos[fila][Columna]==0){
             botones[fila][Columna].setBackground(Color.GRAY);
             botones[fila][Columna].setEnabled(false);
@@ -261,10 +263,10 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     }
 }
     
-    public void Crearasientos(Aviones pAvion){
-        jPanel1.removeAll();
-        columnas=pAvion.getAsientosFila1()+pAvion.getAsientosFila2()+pAvion.getAsientosFila3();
-        filas=pAvion.getAsientosporFila();
+    public void Crearasientos(){
+        jPanelAsientos.removeAll();
+        columnas=avion.getAsientosFila1()+avion.getAsientosFila2()+avion.getAsientosFila3();
+        filas=avion.getAsientosporFila();
         
     botones = new Asientos[filas][columnas];
     int distanciaAsientos=65;
@@ -274,7 +276,7 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     for (int fila =0;fila < this.filas;fila++){
      distanciaTotal=0;
     for (int Columna =0;Columna < this.columnas;Columna++){
-        if(Columna==pAvion.getAsientosFila1()||Columna==pAvion.getAsientosFila1()+pAvion.getAsientosFila2()||Columna==pAvion.getAsientosFila1()+pAvion.getAsientosFila2()+pAvion.getAsientosFila3()){
+        if(Columna==avion.getAsientosFila1()||Columna==avion.getAsientosFila1()+avion.getAsientosFila2()||Columna==avion.getAsientosFila1()+avion.getAsientosFila2()+avion.getAsientosFila3()){
             pasillo=20;
         }else{
             pasillo=0;
@@ -283,8 +285,9 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
         
        botones[fila][Columna] =new Asientos(distanciaTotal,25 *fila, 60, 25);
        botones[fila][Columna].SetNombre(fila,Columna);
-       jPanel1.add(botones[fila][Columna]);
-       
+       jPanelAsientos.add(botones[fila][Columna]);
+       jPanelAsientos.repaint();
+       jPanelAsientos.revalidate();
 
     }
     }
@@ -292,21 +295,20 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     
     
 }
-    
-   public void addAsientos(){
-    int[][]array=listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getConfiguracionAsientos2();
+    //Genera la configuracion del avion
+   public void addAsientosList(){
+    int[][]array=avion.getConfiguracionAsientos2().clone();
     for (int fila =0;fila < this.filas;fila++){
     for (int Columna =0;Columna < this.columnas;Columna++){
         if(botones[fila][Columna].getBackground()==Color.YELLOW){
-            AsientosReservados nuevoAsientoReservado = new AsientosReservados(nombre, botones[fila][Columna].getText());
-            
+            AsientosReservados nuevoAsientoReservado = new AsientosReservados(nombre, botones[fila][Columna].getText(),listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().getConfiguracionAsientos2()[fila][Columna]);
             listaVuelos.getbyCodigo(codigoVuelo).addAsientosReservados(nuevoAsientoReservado);
             array[fila][Columna]=0;
         
         }
 
     }
-                listaVuelos.getbyCodigo(codigoVuelo).getAviondelVuelo().setConfiguracionAsientos2(array);
+                avion.setConfiguracionAsientos2(array.clone());
 }
                 
     
@@ -374,7 +376,7 @@ public class GUiSelectAsientos extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelAsientos;
     private javax.swing.JTextField jTextField2CountTurista;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldCountPrimera;

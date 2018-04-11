@@ -154,22 +154,61 @@ public class Aviones extends AeroNaves implements Cloneable{
     public int[][] getConfiguracionAsientos2() {
         return configuracionAsientos2;
     }
+    
 
     public void setConfiguracionAsientos2(int[][] configuracionAsientos2) {
         this.configuracionAsientos2 = configuracionAsientos2;
     }
     
     
-    @Override
-    public Aviones clone() throws CloneNotSupportedException{
-        Aviones avionclonado = (Aviones)super.clone();
-        return avionclonado;
-    }
+
     
+    public Aviones(Aviones aOriginal){
+        
+        super(aOriginal.getNombre(), aOriginal.getMatricula(), aOriginal.getModelo(), aOriginal.getAñofabricación(), true);
+        
+       this.asientosFila1=aOriginal.asientosFila1;
+            this.asientosFila2=aOriginal.asientosFila2;
+                 this.asientosFila3=aOriginal.asientosFila3;
+                      this.asientosporFila=aOriginal.asientosporFila;
+                           this.cantidadAsientosClaseregular=aOriginal.cantidadAsientosClaseregular;
+                                this.cantidadAsientosClaseregularDisponible =aOriginal.cantidadAsientosClaseregularDisponible;
+                                     this.cantidadAsientosDisponibles=aOriginal.cantidadAsientosDisponibles;
+                                          this.cantidadAsientosNodisponibles=aOriginal.cantidadAsientosNodisponibles;
+                                               this.cantidadAsientosPrimeraClases=aOriginal.cantidadAsientosPrimeraClases;
+                                                   this.cantidadAsientosPrimeraClasesDisponible=aOriginal.cantidadAsientosPrimeraClasesDisponible;
+                                                           this.cantidadAsientosTotales=aOriginal.cantidadAsientosTotales;
+                                                                   this.cantidadColumnasasientos=aOriginal.cantidadColumnasasientos;
+                                                                           
+                                                                           
+                                                                           
+                                                                                    int[][] arraytemp =aOriginal.configuracionAsientos2;
+                                                                                    int[][] array =new int[arraytemp.length][arraytemp[0].length];
+                                                                                        for(int x=0;x<arraytemp.length;x++){
+                                                                                        for(int y=0;y<arraytemp[0].length;y++){
+                                                                                        array[x][y]=arraytemp[x][y]; 
+                                                                                        }
+                                                                                        }
+                                                                                       this.configuracionAsientos2=array; 
+                                                                                        
+                                                                                        
+                                                                                        
+                                                                                        
+     }                                                                    
+
+
    
 
-
-
+         @Override
+      public Aviones clone() throws CloneNotSupportedException{
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return(Aviones) obj;
+    }
     
     
     

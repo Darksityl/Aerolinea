@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 
 
-public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
+public class GUIRegistroVuelos extends javax.swing.JFrame{
     
     RegistrarAeronaves registroAeronaves;
     RegistroVuelos listaVuelos;
@@ -63,12 +63,12 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
         jDateChooserDateArrive = new com.toedter.calendar.JDateChooser();
         jDateChooserDateOut = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        jComboBoxDestinos = new javax.swing.JComboBox<>();
         jComboBoxOrigen = new javax.swing.JComboBox<>();
         jTextFieldduracion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldPiloto = new javax.swing.JTextField();
+        jComboBoxDestinos = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -125,12 +125,6 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
 
         jLabel7.setText("Día llegada :");
 
-        jComboBoxDestinos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jComboBoxDestinosPropertyChange(evt);
-            }
-        });
-
         jComboBoxOrigen.setSelectedItem(jComboBoxOrigen);
         jComboBoxOrigen.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -154,6 +148,12 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
 
         jLabel8.setText("Piloto :");
 
+        jComboBoxDestinos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBoxDestinosPropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,13 +162,13 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel8))
-                .addGap(12, 12, 12)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -193,10 +193,10 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
                                     .addComponent(jComboBoxMinutosLlegada, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jButton1)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jComboBoxDestinos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextFieldPiloto, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBoxOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, 210, Short.MAX_VALUE)
-                        .addComponent(jComboBoxDestinos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBoxOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, 210, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,12 +207,12 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
                     .addComponent(jTextFieldPiloto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBoxDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jComboBoxOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxDestinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -304,15 +304,16 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -424,7 +425,8 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
     }//GEN-LAST:event_jTable1PropertyChange
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
+        try {
+             if(validadorGuardar()){
      // Con JCombobox
         Object seleccion = JOptionPane.showInputDialog(
            null,
@@ -441,15 +443,8 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
      generarCodigoVuelo();
      duracionVuelo();
      Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
-     Aviones nAvionClonado=null;
-     
-         try {
-                  nAvionClonado=nAvion.clone();
+     Aviones nAvionClonado=new Aviones(nAvion);
 
-         } catch (Exception e) {
-             
-            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
-         }
      
      Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
      nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
@@ -469,15 +464,8 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
     generarCodigoVuelo();
      duracionVuelo();
      Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
-     Aviones nAvionClonado=null;
+     Aviones nAvionClonado=new Aviones(nAvion);
      
-         try {
-                  nAvionClonado=nAvion.clone();
-
-         } catch (Exception e) {
-             
-            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
-         }
      Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
      nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
      nuevoVuelo.setPrecioPrimera(Integer.parseInt(jTextFieldPRecioVIP.getText()));
@@ -500,15 +488,8 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
      generarCodigoVuelo();
      duracionVuelo();
      Aviones nAvion=registroAeronaves.getAvion(jTable1.getSelectedRow());
-     Aviones nAvionClonado=null;
-     
-         try {
-                  nAvionClonado=nAvion.clone();
+     Aviones nAvionClonado=new Aviones(nAvion);
 
-         } catch (Exception e) {
-             
-            JOptionPane.showMessageDialog(null, "Error al Clonar Avion");
-         }
      
      Vuelos nuevoVuelo = new Vuelos(nAvionClonado,jDateChooserDateOut.getCalendar(), jDateChooserDateArrive.getCalendar(),jComboBoxDestinos.getSelectedItem().toString(),jComboBoxOrigen.getSelectedItem().toString(),dias,horas,minutos);
      nuevoVuelo.setPiloto(jTextFieldPiloto.getText());
@@ -526,7 +507,14 @@ public class GUIRegistroVuelos extends javax.swing.JFrame implements Cloneable{
              
          }     JOptionPane.showMessageDialog(null,"Ha programado 1 ruta por 7 días" );
      }
-     
+     }else{
+     JOptionPane.showMessageDialog(null, "Debe de completar todos los datos");
+     }
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar un avion");
+        }
+              
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -665,7 +653,33 @@ public Object clone() throws CloneNotSupportedException {
     Aviones octClone = (Aviones)super.clone();
     return octClone;
 }
+/**
+ * 
+ * Valida si es el mismo origen y destino
+ * @return 
+ */
+public boolean validador(){
+    
+    
+    return jComboBoxDestinos.getSelectedIndex()!=jComboBoxOrigen.getSelectedIndex();
+    
+    
+}
 
+public boolean validadorGuardar(){
+    if(validador()){
+        if(isCorrect()&&jTextFieldPiloto.getText().isEmpty()==false&&jTextFieldPrecioTurista.getText().isEmpty()==false&&jTextFieldPRecioVIP.getText().isEmpty()==false){
+        
+        return true;
+        }else{
+            return false;
+        }
+    }else{
+        JOptionPane.showMessageDialog(null, "Revise el destino y origen, no pueden ser iguales");
+        return false;
+    }
+    
+}
 
 
 

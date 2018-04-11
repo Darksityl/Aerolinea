@@ -13,10 +13,22 @@ public class AsientosReservados {
     
     private String nombreCompra;
     private String asiento;
+    private int clase;
 
-    public AsientosReservados(String nombreCompra, String asiento) {
+    public int getClase() {
+        return clase;
+    }
+
+    public void setClase(int clase) {
+        this.clase = clase;
+    }
+    
+    //1 for turista 2 for Primera
+
+    public AsientosReservados(String nombreCompra, String asiento,int clase) {
         this.nombreCompra = nombreCompra;
         this.asiento = asiento;
+        this.clase=clase;
     }
 
     public String getNombreCompra() {

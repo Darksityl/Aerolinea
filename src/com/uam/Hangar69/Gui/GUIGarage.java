@@ -7,11 +7,14 @@ package com.uam.Hangar69.Gui;
 
 import com.uam.Hangar69.AeroNaves.Aviones;
 import com.uam.Hangar69.AeroNaves.RegistrarAeronaves;
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -36,6 +39,7 @@ public class GUIGarage extends javax.swing.JFrame {
     public GUIGarage(RegistrarAeronaves pregistroAeronaves) {
         this.registroAeronaves=pregistroAeronaves;
         initComponents();
+        
     }
 
     /**
@@ -72,7 +76,6 @@ public class GUIGarage extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jTextFieldCantAsientosFilas = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldAsientosRegular = new javax.swing.JTextField();
@@ -81,17 +84,21 @@ public class GUIGarage extends javax.swing.JFrame {
         jTextFieldCantidadAcientosTotales = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jTextFieldNoDisponible = new javax.swing.JTextField();
-        jButtonAgregar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jComboBoxFabricacion = new javax.swing.JComboBox<>();
-        jPanelAvion = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jPanelAvion = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jButtonAgregar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Nombre Aerolinea:");
 
         jLabel2.setText("Matricula:");
 
@@ -239,8 +246,6 @@ public class GUIGarage extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel9.setText("Distribución Asientos :");
-
         jLabel7.setText("Clase Regular");
 
         jLabel8.setText("Primera Clase ");
@@ -262,62 +267,80 @@ public class GUIGarage extends javax.swing.JFrame {
 
         jTextFieldNoDisponible.setEditable(false);
 
+        jButton3.setBackground(java.awt.Color.blue);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setBackground(java.awt.Color.gray);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel16)))))
                     .addComponent(jLabel6))
+                .addGap(4, 4, 4)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldAsientosVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                            .addComponent(jTextFieldAsientosRegular)
-                            .addComponent(jTextFieldNoDisponible)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextFieldCantidadAcientosTotales)))
+                    .addComponent(jTextFieldNoDisponible, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .addComponent(jTextFieldAsientosRegular)
+                    .addComponent(jTextFieldCantidadAcientosTotales)
+                    .addComponent(jTextFieldAsientosVIP))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextFieldAsientosVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldAsientosRegular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(jTextFieldNoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldAsientosRegular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldAsientosVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextFieldNoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCantidadAcientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addContainerGap())
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldCantidadAcientosTotales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-
-        jButtonAgregar.setText("Guardar");
-        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAgregarActionPerformed(evt);
-            }
-        });
 
         jComboBoxFabricacion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -325,21 +348,30 @@ public class GUIGarage extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelAvionLayout = new javax.swing.GroupLayout(jPanelAvion);
-        jPanelAvion.setLayout(jPanelAvionLayout);
-        jPanelAvionLayout.setHorizontalGroup(
-            jPanelAvionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
-        );
-        jPanelAvionLayout.setVerticalGroup(
-            jPanelAvionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
-        );
-
         jButton2.setText("Refrescar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelAvionLayout = new javax.swing.GroupLayout(jPanelAvion);
+        jPanelAvion.setLayout(jPanelAvionLayout);
+        jPanelAvionLayout.setHorizontalGroup(
+            jPanelAvionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 686, Short.MAX_VALUE)
+        );
+        jPanelAvionLayout.setVerticalGroup(
+            jPanelAvionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 584, Short.MAX_VALUE)
+        );
+
+        jLabel9.setText("Distribución Asientos :");
+
+        jButtonAgregar.setText("Guardar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarActionPerformed(evt);
             }
         });
 
@@ -352,19 +384,9 @@ public class GUIGarage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jCheckBoxActivo)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jComboBoxFabricacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -375,57 +397,66 @@ public class GUIGarage extends javax.swing.JFrame {
                                     .addComponent(jTextFieldNombre)
                                     .addComponent(jComboBoxModelo, 0, 149, Short.MAX_VALUE)
                                     .addComponent(jTextFieldMatricula)))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(67, 67, 67)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxFabricacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBoxActivo, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(298, 298, 298))
+                        .addComponent(jPanelAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButtonAgregar)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBoxModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBoxFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jCheckBoxActivo)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jComboBoxModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jTextFieldMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(12, 12, 12)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jComboBoxFabricacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jCheckBoxActivo)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAgregar)
+                        .addGap(81, 81, 81)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelAvion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(480, 480, 480))
         );
 
         jMenu2.setText("File");
@@ -440,33 +471,18 @@ public class GUIGarage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(434, 434, 434))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        //Crearasientos();
-
-        Crearasientos();
-        jPanelAvion.repaint();
-        jTextFieldCantidadAcientosTotales.setText(Integer.toString(ContadorAsientos(botones)));
-        JOptionPane.showMessageDialog(null,"Ha Creado :"+ContadorAsientos(botones)+" espacios.");
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         // TODO add your handling code here:
@@ -476,67 +492,100 @@ public class GUIGarage extends javax.swing.JFrame {
             ,jComboBoxFila3.getSelectedIndex(),"2", "", "", 2, true);
         Aviones nuevoAvion = new Aviones(Integer,Integer.parseInt(), HIDE_ON_CLOSE, HIDE_ON_CLOSE, HIDE_ON_CLOSE, DISPOSE_ON_CLOSE, PROPERTIES, columnas, filas, filas, filas, configuracionAsientos2, nombre, matricula, modelo, PROPERTIES, rootPaneCheckingEnabled)
         */
-        
-        
+
         /*
         int cantidadAsientosClaseregular, int cantidadAsientosPrimeraClases, int cantidadAsientosNodisponibles,
-                int cantidadAsientosTotales, int cantidadAsientosDisponibles, int asientosporFila, int cantidadColumnasasientos, 
-                        int asientosFila1, int asientosFila2, int asientosFila3, int[][] configuracionAsientos2, String nombre, String matricula, 
-                                String modelo, int añofabricación, boolean activa
-*/
-        
+        int cantidadAsientosTotales, int cantidadAsientosDisponibles, int asientosporFila, int cantidadColumnasasientos,
+        int asientosFila1, int asientosFila2, int asientosFila3, int[][] configuracionAsientos2, String nombre, String matricula,
+        String modelo, int añofabricación, boolean activa
+        */
+
         try {
-        jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
-        jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
-        jTextFieldNoDisponible.setText(Integer.toString(AsientosDesahbilitado()));
+            jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
+            jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
+            jTextFieldNoDisponible.setText(Integer.toString(AsientosDesahbilitado()));
         } catch (Exception e) {
         }
-        
-        
-        
-        Aviones nuevoAvion = new Aviones(jTextFieldNombre.getText(),jTextFieldMatricula.getText(),jComboBoxModelo.getSelectedItem().toString(),
-        Integer.parseInt(jComboBoxFabricacion.getSelectedItem().toString()),jCheckBoxActivo.isSelected());
-        nuevoAvion.setCantidadAsientosTotales(ContadorAsientos(botones));
-        nuevoAvion.setCantidadAsientosClaseregular(AsientosClaseRegular());
-        nuevoAvion.setCantidadAsientosPrimeraClases(AsientosVip());
-        nuevoAvion.setCantidadAsientosNodisponibles(AsientosDesahbilitado());
-        nuevoAvion.setCantidadAsientosDisponibles(ContadorAsientos(botones)-AsientosDesahbilitado());
-        nuevoAvion.setAsientosporFila(Integer.parseInt(jTextFieldCantAsientosFilas.getText()));
-        nuevoAvion.setCantidadColumnasasientos(jComboBoxFilas.getSelectedIndex());
-        nuevoAvion.setAsientosFila1(jComboBoxFila1.getSelectedIndex());
-        nuevoAvion.setAsientosFila2(jComboBoxFila2.getSelectedIndex());
-        nuevoAvion.setAsientosFila3(jComboBoxFila3.getSelectedIndex());
-        nuevoAvion.setConfiguracionAsientos2(CrearMatrizdeBotones());
-        nuevoAvion.setCantidadAsientosClaseregularDisponible(AsientosClaseRegular());
-        nuevoAvion.setCantidadAsientosPrimeraClasesDisponible(AsientosVip());
-        this.registroAeronaves.addAvion(nuevoAvion);
+
+        if(validador1()&&validador2()){
+            Aviones nuevoAvion = new Aviones(jTextFieldNombre.getText(),jTextFieldMatricula.getText(),jComboBoxModelo.getSelectedItem().toString(),
+                Integer.parseInt(jComboBoxFabricacion.getSelectedItem().toString()),jCheckBoxActivo.isSelected());
+            nuevoAvion.setCantidadAsientosTotales(ContadorAsientos(botones));
+            nuevoAvion.setCantidadAsientosClaseregular(AsientosClaseRegular());
+            nuevoAvion.setCantidadAsientosPrimeraClases(AsientosVip());
+            nuevoAvion.setCantidadAsientosNodisponibles(AsientosDesahbilitado());
+            nuevoAvion.setCantidadAsientosDisponibles(ContadorAsientos(botones)-AsientosDesahbilitado());
+            nuevoAvion.setAsientosporFila(Integer.parseInt(jTextFieldCantAsientosFilas.getText()));
+            nuevoAvion.setCantidadColumnasasientos(jComboBoxFilas.getSelectedIndex());
+            nuevoAvion.setAsientosFila1(jComboBoxFila1.getSelectedIndex());
+            nuevoAvion.setAsientosFila2(jComboBoxFila2.getSelectedIndex());
+            nuevoAvion.setAsientosFila3(jComboBoxFila3.getSelectedIndex());
+            nuevoAvion.setConfiguracionAsientos2(CrearMatrizdeBotones());
+            nuevoAvion.setCantidadAsientosClaseregularDisponible(AsientosClaseRegular());
+            nuevoAvion.setCantidadAsientosPrimeraClasesDisponible(AsientosVip());
+            this.registroAeronaves.addAvion(nuevoAvion);
+
+            JOptionPane.showMessageDialog(null, "Ha creado una aeronave....Se cerrará esta ventana.");
+            setVisible(false);
+
+        }else {
+            JOptionPane.showMessageDialog(null, "No se ha creado el avion debe de ingresar datos validos para su creación");
+        }
+
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
-    private void jComboBoxModeloPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxModeloPropertyChange
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        try {
+            jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
+            jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
+            jTextFieldNoDisponible.setText(Integer.toString(AsientosDesahbilitado()));
+        } catch (Exception e) {
+        }
 
-
-    }//GEN-LAST:event_jComboBoxModeloPropertyChange
-
-    private void jCheckBoxActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxActivoActionPerformed
-
-    private void jTextFieldMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMatriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMatriculaActionPerformed
-
-    private void jComboBoxModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModeloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxModeloActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBoxFabricacionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxFabricacionPropertyChange
         // TODO add your handling code here:
-            for(int x =0;x<12;x++){
+        for(int x =0;x<12;x++){
             int añoinicial=2018-x;
             jComboBoxFabricacion.addItem(Integer.toString(añoinicial));
         }
     }//GEN-LAST:event_jComboBoxFabricacionPropertyChange
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextFieldAsientosRegularPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldAsientosRegularPropertyChange
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jTextFieldAsientosRegularPropertyChange
+
+    private void jTextFieldCantAsientosFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantAsientosFilasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCantAsientosFilasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        //Crearasientos();
+
+        if(validador1()){
+            Crearasientos();
+            jPanelAvion.repaint();
+            jTextFieldCantidadAcientosTotales.setText(Integer.toString(ContadorAsientos(botones)));
+            JOptionPane.showMessageDialog(null,"Ha Creado :"+ContadorAsientos(botones)+" espacios.");
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe de ingresar una configuración validad");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxFila3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFila3ActionPerformed
         // TODO add your handling code here:
@@ -561,35 +610,25 @@ public class GUIGarage extends javax.swing.JFrame {
         jComboBoxFila1.setSelectedIndex(0);
         jComboBoxFila2.setSelectedIndex(0);
         jComboBoxFila3.setSelectedIndex(0);
-        
 
     }//GEN-LAST:event_jComboBoxFilasActionPerformed
 
-    private void jTextFieldAsientosRegularPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextFieldAsientosRegularPropertyChange
+    private void jComboBoxModeloPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBoxModeloPropertyChange
         // TODO add your handling code here:
 
-        
+    }//GEN-LAST:event_jComboBoxModeloPropertyChange
 
-        
-        
-        
-    }//GEN-LAST:event_jTextFieldAsientosRegularPropertyChange
-
-    private void jTextFieldCantAsientosFilasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantAsientosFilasActionPerformed
+    private void jComboBoxModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCantAsientosFilasActionPerformed
+    }//GEN-LAST:event_jComboBoxModeloActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jTextFieldMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMatriculaActionPerformed
         // TODO add your handling code here:
-        try {
-        jTextFieldAsientosRegular.setText(Integer.toString(AsientosClaseRegular()));
-        jTextFieldAsientosVIP.setText(Integer.toString(AsientosVip()));
-        jTextFieldNoDisponible.setText(Integer.toString(AsientosDesahbilitado()));
-        } catch (Exception e) {
-        }
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jTextFieldMatriculaActionPerformed
+
+    private void jCheckBoxActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxActivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -629,6 +668,9 @@ public class GUIGarage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonAgregar;
     private javax.swing.JCheckBox jCheckBoxActivo;
     private javax.swing.JComboBox<String> jComboBoxFabricacion;
@@ -782,12 +824,29 @@ public int[][] CrearMatrizdeBotones(){
         }
             
 
-    }
+    } 
     }
     
     
    return pConfiguracionAsientos; 
 }
+
+public boolean validador1(){
+    
+        return (Integer.parseInt(jTextFieldCantAsientosFilas.getText())>0&&Integer.parseInt(jComboBoxFilas.getSelectedItem().toString())>0&&(Integer.parseInt(jComboBoxFila1.getSelectedItem().toString())+Integer.parseInt(jComboBoxFila2.getSelectedItem().toString())+Integer.parseInt(jComboBoxFila2.getSelectedItem().toString()))>0);
+    
+    
+    
+}
+
+public boolean validador2(){
+    
+    return (jTextFieldNombre.getText().length()!=0&&jTextFieldMatricula.getText().length()!=0);
+ 
+    
+    
+}
+
 
 }
 
